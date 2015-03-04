@@ -1,0 +1,26 @@
+{
+    "name": "nepster-web/yii2-component-perfectmoney",
+    "description": "Компонент для работы с платежной системой Perfect Money",
+    "type": "yii2-extension",
+    "keywords": ["yii2", "yii 2", "perfectmoney", "Perfect Money"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Nepster",
+            "email": "nepsterxxx@mail.ru"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/nepster-web/yii2-component-perfectmoney/issues",
+        "source": "https://github.com/nepster-web/yii2-component-perfectmoney"
+    },
+    "require": {
+        "yiisoft/yii2": "*",
+        "nepster-web/yii2-modules-installer": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "nepster\\perfectmoney\\": ""
+        }
+    }
+}
