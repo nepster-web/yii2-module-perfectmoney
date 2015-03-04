@@ -44,6 +44,11 @@ class Api extends \yii\base\Component
     /**
      * @var array
      */
+    public $resultUrl;
+
+    /**
+     * @var array
+     */
     public $successUrl;
 
     /**
