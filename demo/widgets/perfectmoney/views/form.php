@@ -44,7 +44,7 @@
         <input type="hidden" name="PAYEE_ACCOUNT" value="<?= $api->walletNumber ?>">
         <input type="hidden" name="PAYEE_NAME" value="<?= $api->merchantName ?>">
         <input type="hidden" name="PAYMENT_UNITS" value="<?= $api->walletCurrency ?>">
-        <?php /*<input type="hidden" name="STATUS_URL" value="<?= $api->resultUrl ?>"> */?>
+        <input type="hidden" name="STATUS_URL" value="<?= $api->resultUrl ?>">
         <input type="hidden" name="PAYMENT_URL" value="<?= $api->successUrl ?>">
         <input type="hidden" name="NOPAYMENT_URL" value="<?= $api->failureUrl ?>">
         <input type="hidden" name="NOPAYMENT_URL_METHOD" value="POST">

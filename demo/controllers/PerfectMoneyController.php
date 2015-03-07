@@ -1,9 +1,9 @@
 <?php
 
-namespace common\modules\perfectmoney\controllers;
+namespace common\modules\merchant\controllers;
 
 use yii\web\HttpException;
-use yii\base\Controller;
+use yii\web\Controller;
 use Yii;
 
 /**
@@ -45,8 +45,22 @@ class PerfectMoneyController extends Controller
      */
     public function actionResult()
     {
-        echo '<pre>';
-        print_r(Yii::$app->request->post());
+        if (!Yii::$app->request->post()) {
+            return $this->goBack();
+        }
+
+        $post = '';
+        foreach (Yii::$app->request->post() as $key => $_post) {
+            $post .= $key . ': ' . $_post . PHP_EOL;
+        }
+
+        if ($this->verify(Yii::$app->request->post())) {
+            $log = 'SUCCESS PAYMENT INVOICE №' . Yii::$app->request->post('PAYMENT_ID') . PHP_EOL . $post;
+            Yii::info($log, 'merchant');
+        } else {
+            $log = 'FAIL PAYMENT INVOICE №' . Yii::$app->request->post('PAYMENT_ID') . PHP_EOL . $post;
+            Yii::error($log, 'merchant');
+        }
     }
 
     /**
@@ -54,8 +68,18 @@ class PerfectMoneyController extends Controller
      */
     public function actionSuccess()
     {
-        echo '<pre>';
-        print_r(Yii::$app->request->post());
+        if (!Yii::$app->request->post()) {
+            return $this->goBack();
+        }
+
+        if ($this->verify(Yii::$app->request->post())) {
+            $amount = Yii::$app->formatter->asCurrency(Yii::$app->request->post('PAYMENT_AMOUNT'));
+            Yii::$app->session->setFlash('success', 'Ваш счет пополнен на ' . $amount . ' через платежную систему Perfect Money');
+        } else {
+            Yii::$app->session->setFlash('danger', 'Возникла критическая ошибка');
+        }
+
+        return $this->redirect(['/merchant/default/pay']);
     }
 
     /**
@@ -63,8 +87,27 @@ class PerfectMoneyController extends Controller
      */
     public function actionFailure()
     {
-        echo '<pre>';
-        print_r(Yii::$app->request->post());
+        if (!Yii::$app->request->post()) {
+            return $this->goBack();
+        }
+
+        Yii::$app->session->setFlash('danger', 'Оплата платежа отменена');
+
+        return $this->redirect(['/merchant/default/pay']);
+    }
+
+    /**
+     * Верификация платежа
+     */
+    protected function verify($data)
+    {
+        if (Yii::$app->pm->checkHash($data)) {
+
+            // Начисление средств на счет пользователя
+
+            return true;
+        }
+        return false;
     }
 
 }

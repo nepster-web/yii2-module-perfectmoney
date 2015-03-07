@@ -27,6 +27,20 @@ php composer.phar require nepster-web/yii2-component-perfectmoney: dev-master
 
 ## Настройка
 
+Текущий компонент, зависит от расширения [yii2-extensions-installer](https://github.com/nepster-web/yii2-extensions-installer).
+
+
+Поэтому прежде чем перейти к установке компонента perfectmoney необходимо сконфигурировать консольное приложение добавив настройки вышеуказанного расширения.
+
+
+Далее необходимо запустить инсталлер и установить компонент следуя инструкциям:
+
+```
+yii installer
+```
+
+**После того как компонент успешно установлен:**
+
 Необходимо добавить настройку компонента в конфигурационный файл Вашего приложения:
 
 ```
@@ -49,7 +63,7 @@ php composer.phar require nepster-web/yii2-component-perfectmoney: dev-master
 После успешной установки Вам будет доступен виджет с платежной формой, задача которого сделать автоматический редирект на сайт платежной системы:
 
 ```
-return \common\widgets\perfectmoney\RenderForm::widget([
+return \common\modules\merchant\widgets\PmForm\RenderForm::widget([
    'api' => Yii::$app->pm,
    'invoiceId' => $invoiceId,
    'amount' => $amount,

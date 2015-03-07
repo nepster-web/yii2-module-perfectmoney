@@ -1,9 +1,10 @@
 <?php
 
-namespace nepster\widget\perfectmoney;
+namespace common\modules\merchant\widgets\perfectmoney;
 
-use yii\bootstrap\Widget;
+use yii\base\Widget;
 use yii\web\View;
+use Yii;
 
 class RenderForm extends Widget
 {
@@ -38,9 +39,10 @@ class RenderForm extends Widget
     public function init()
     {
         parent::init();
-        /*assert(isset($this->api));
+        assert(isset($this->api));
+        assert(isset($this->autoRedirect));
         assert(isset($this->invoiceId));
-        assert(isset($this->amount));*/
+        assert(isset($this->amount));
     }
 
     /**

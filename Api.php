@@ -59,7 +59,7 @@ class Api extends \yii\base\Component
     /**
      * @var string
      */
-    protected $hash;
+    protected $_hash;
 
     /**
      * @inheritdoc
@@ -69,7 +69,7 @@ class Api extends \yii\base\Component
         $this->resultUrl = Url::to($this->resultUrl, true);
         $this->successUrl = Url::to($this->successUrl, true);
         $this->failureUrl = Url::to($this->failureUrl, true);
-        $this->hash = strtoupper(md5($this->alternateSecret));
+        $this->_hash = strtoupper(md5($this->alternateSecret));
     }
 
     /**
@@ -137,7 +137,7 @@ class Api extends \yii\base\Component
             $data['PAYMENT_UNITS'],
             $data['PAYMENT_BATCH_NUM'],
             $data['PAYER_ACCOUNT'],
-            $this->hash,
+            $this->_hash,
             $data['TIMESTAMPGMT'],
         ];
 
