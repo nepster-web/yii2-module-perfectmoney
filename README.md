@@ -13,13 +13,13 @@ Yii2 компонент платежной системы Perfect Money
 Запустите в консоле
 
 ```
-php composer.phar require nepster-web/yii2-component-perfectmoney: dev-master
+php composer.phar require --prefer-dist nepster-web/yii2-component-perfectmoney "*"
 ```
 
 или добавьте
 
 ```
-"nepster-web/yii2-component-perfectmoney": "dev-master"
+"nepster-web/yii2-component-perfectmoney": "*"
 ```
 
 в файл `composer.json` в секцию require.
