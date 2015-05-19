@@ -69,6 +69,8 @@ class Api extends \yii\base\Component
      */
     public function init()
     {
+        parent::init();
+
         $this->resultUrl = Url::to($this->resultUrl, true);
         $this->successUrl = Url::to($this->successUrl, true);
         $this->failureUrl = Url::to($this->failureUrl, true);
