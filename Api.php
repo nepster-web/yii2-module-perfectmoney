@@ -9,6 +9,9 @@ use yii\helpers\VarDumper;
 use yii\helpers\Url;
 use Yii;
 
+/**
+ * Class Api
+ */
 class Api extends \yii\base\Component
 {
     /**

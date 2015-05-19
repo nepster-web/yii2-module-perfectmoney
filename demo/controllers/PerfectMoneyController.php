@@ -1,6 +1,6 @@
 <?php
 
-namespace common\modules\merchant\controllers;
+namespace app\modules\merchant\controllers;
 
 use yii\web\HttpException;
 use yii\web\Controller;

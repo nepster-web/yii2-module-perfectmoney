@@ -1,47 +1,32 @@
-Yii2 компонент платежной системы Perfect Money
-----------------------------------------------
+# Модуль платежной системы Perfect Money для Yii2
 
-## Особенности
-
-**Компонент обеспечивает простой и расширяемый функционал для работы с платежной системой [Perfect Money](http://perfectmoney.is).**
+Обеспечивает простой и расширяемый функционал для работы с платежной системой [Perfect Money](http://perfectmoney.is).
 
 
 ## Установка
 
-Предпочтительный способ установки этого виджета через [composer](http://getcomposer.org/download/).
+Предпочтительный способ установки через [composer](http://getcomposer.org/download/).
 
 Запустите в консоле
 
 ```
-php composer.phar require --prefer-dist nepster-web/yii2-component-perfectmoney "*"
+php composer.phar require --prefer-dist nepster-web/yii2-module-perfectmoney "*"
 ```
 
 или добавьте
 
 ```
-"nepster-web/yii2-component-perfectmoney": "*"
+"nepster-web/yii2-module-perfectmoney": "*"
 ```
 
 в файл `composer.json` в секцию require.
 
 
-## Настройка
+## Документация
 
-Текущий компонент, зависит от расширения [yii2-extensions-installer](https://github.com/nepster-web/yii2-extensions-installer).
+**После того как модуль успешно установлен:**
 
-
-Поэтому прежде чем перейти к установке компонента perfectmoney необходимо сконфигурировать консольное приложение добавив настройки вышеуказанного расширения.
-
-
-Далее необходимо запустить инсталлер и установить компонент следуя инструкциям:
-
-```
-yii installer
-```
-
-**После того как компонент успешно установлен:**
-
-Необходимо добавить настройку компонента в конфигурационный файл Вашего приложения:
+Необходимо добавить настройки в конфигурационный файл Вашего приложения:
 
 ```
 'components' => [
@@ -77,3 +62,15 @@ return \common\modules\merchant\widgets\PmForm\RenderForm::widget([
 Редирект реализован с помощью JavaScript, поэтому если он будет выключен, то пользователю необходимо подтвердить переход нажав на кнопку.
 
 Виджет можно реализовать подходящим для Вас способом.
+
+
+## Зависимости
+
+Текущий модуль, устанавливает следующие пакеты:
+
+ * [yii2-extensions-installer](https://github.com/nepster-web/yii2-extensions-installer)
+ 
+
+## Лицензия
+
+Данный модуль выпущен под лицензией MIT. Подробную информацию читайте в файле [LICENSE.md](LICENSE.md).

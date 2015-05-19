@@ -1,6 +1,6 @@
 <?php
 
-namespace common\modules\merchant\widgets\perfectmoney;
+namespace app\modules\merchant\widgets\perfectmoney;
 
 use yii\base\Widget;
 use yii\web\View;
