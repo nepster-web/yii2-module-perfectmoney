@@ -189,4 +189,73 @@ class Api extends \yii\base\Component
 
         return $result;
     }
+
+    /**
+     * Получить историю кошелька PerfectMoney
+     *
+     *   $params = [
+     *       'startday' => '09',
+     *       'startmonth' => '09',
+     *       'startyear' => '2015',
+     *       'endday' => '04',
+     *       'endmonth' => '10',
+     *       'endyear' => '2015',
+     *   ];
+     *
+     *
+     * @param array $params
+     * @return array|string
+     */
+    public function history($params = [])
+    {
+        $defaults = [
+            'AccountID' => $this->accountId,
+            'PassPhrase' => $this->accountPassword,
+        ];
+
+        $httpParams = http_build_query(ArrayHelper::merge($defaults, $params));
+        $scriptUrl = "https://perfectmoney.is/acct/historycsv.asp?{$httpParams}";
+
+        $f = fopen($scriptUrl, 'rb');
+
+        if ($f === false) {
+            return 'error openning url';
+        }
+
+
+        $lines = array();
+        while (!feof($f)) array_push($lines, trim(fgets($f)));
+
+        fclose($f);
+
+        $ar = array();
+        if ($lines[0] != 'Time,Type,Batch,Currency,Amount,Fee,Payer Account,Payee Account,Payment ID,Memo') {
+
+            // print error message
+            return $lines[0];
+
+        } else {
+
+            // do parsing
+            $ar = array();
+            $n = count($lines);
+            for ($i = 1; $i < $n; $i++) {
+
+                $item = explode(",", $lines[$i], 9);
+                if (count($item) != 9) continue; // line is invalid - pass to next one
+                $item_named['Time'] = $item[0];
+                $item_named['Type'] = $item[1];
+                $item_named['Batch'] = $item[2];
+                $item_named['Currency'] = $item[3];
+                $item_named['Amount'] = $item[4];
+                $item_named['Fee'] = $item[5];
+                $item_named['Payer Account'] = $item[6];
+                $item_named['Payee Account'] = $item[7];
+                $item_named['Memo'] = $item[8];
+                array_push($ar, $item_named);
+            }
+
+            return $ar;
+        }
+    }
 }
